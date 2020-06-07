@@ -3,7 +3,7 @@ import { Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
 //判断是开发还是生产
-const BASEURL = process.env.NODE_ENV ===  '/devApi'
+const BASEURL = 'http://api_php.punuohui.cn/api3.2/index.php'
 // create an axios instance 实例
 const service = axios.create({
   baseURL:BASEURL,
@@ -55,5 +55,4 @@ error =>{
   return Promise.reject(error)
 }
 )
-
 export default service

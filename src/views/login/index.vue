@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import { login, register } from '@/api/user'
 import { isUserNameReg, isPassWordReg }from '@/utils/validate'
 export default {
   name:'login',
@@ -74,9 +75,8 @@ export default {
         {txt:'注册',current:false,model:'reg'}
       ],
       ruleForm: {
-          username: '',
-          pass: '',
-          age: ''
+            username: '',
+            pass: ''
         },
         rules: {
           username: [
@@ -93,8 +93,11 @@ export default {
     }
   },
   created(){},
-  mounted(){},
+  mounted(){
+   
+  },
   methods:{
+    // 跳转menu
     JumpMenu(data){
       this.model = data.model
       this.menuTab.forEach(
@@ -106,10 +109,20 @@ export default {
       // 点击高亮
       data.current = true;
     },
+    // 提交表单
     submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            alert('submit!');
+            let responseData = {
+              username: this.ruleForm.username,
+              pass: this.ruleForm.pass
+            }
+            register(responseData).then(
+              res => {
+                console.log(res)
+              }).catch( err =>{
+                console.log(err)
+              })
           } else {
             console.log('error submit!!');
             return false;

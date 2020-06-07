@@ -10,18 +10,18 @@ export function isExternal(path) {
   return /^(https?:|mailto:|tel:)/.test(path)
 }
 
-// 用户名校验
+// 用户名正则校验
 /**
  * @param {string} value
  * @returns {Boolean}
  */
 export function  isUserNameReg (value) {
   // 用户名必须是4-10位之间的字母、下划线、@、.，并且不能以数字开头
-  let reg =/^[A-Za-z_@.]{4,10}$/;
+  let reg = /^[a-zA-Z0-9_-]{4,16}$/;
   return reg.test(value) ? true:false;
 } 
 
-// 密码校验
+// 密码正则校验
 /**
  * @param {string} value
  * @returns {Boolean}
